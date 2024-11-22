@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flower Bouquet Animation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: radial-gradient(circle, #ffe6f0, #ff99cc);
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 300px;
+      height: 400px;
+      animation: zoom 2s forwards, break-apart 3s 2s forwards;
+    }
+
+    .piece {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://i.postimg.cc/K8gLjwQV/rose.webp'); /* Use your local image path */
+      background-size: cover;
+      background-position: center;
+      opacity: 1;
+      animation: fadeOut 1s 2.5s forwards;
+      border-radius: 15px; /* Rounded corners for the image */
+    }
+
+    /* Individual pieces - dividing into quadrants */
+    .piece.top-left {
+      clip-path: polygon(0 0, 50% 0, 50% 50%, 0 50%);
+      transform-origin: top left;
+      animation: break-top-left 1s 2s forwards;
+    }
+
+    .piece.top-right {
+      clip-path: polygon(50% 0, 100% 0, 100% 50%, 50% 50%);
+      transform-origin: top right;
+      animation: break-top-right 1s 2s forwards;
+    }
+
+    .piece.bottom-left {
+      clip-path: polygon(0 50%, 50% 50%, 50% 100%, 0 100%);
+      transform-origin: bottom left;
+      animation: break-bottom-left 1s 2s forwards;
+    }
+
+    .piece.bottom-right {
+      clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%);
+      transform-origin: bottom right;
+      animation: break-bottom-right 1s 2s forwards;
+    }
+
+    /* Text container */
+    .text-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      animation: fadeIn 2s 3s forwards; /* Fade-in after 1 second gap */
+    }
+
+    .text-container span {
+      display: inline-block;
+      font-family: 'Arial', sans-serif;
+      font-size: 2rem;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      transform: scale(0) rotate(0deg);
+      margin: 0 5px; /* Added space between letters */
+      animation: textGrow 2s ease-in-out forwards;
+    }
+
+    /* Second Text Animation */
+    .second-text-container {
+      position: absolute;
+      top: 65%; /* Slightly below the first text */
+      left: 50%;
+      transform: translateX(-50%); /* Center the text horizontally */
+      opacity: 0;
+      white-space: nowrap; /* Prevents the text from wrapping */
+      animation: fadeIn 2s 6s forwards; /* Fade-in after 1 second gap */
+      overflow: hidden; /* Prevents overflow */
+      width: 100%; /* Full width to keep the text in one line */
+      text-align: center; /* Center the text */
+    }
+
+    .second-text-container span {
+      display: inline-block;
+      font-family: 'Arial', sans-serif;
+      font-size: 1rem; /* Smaller font size */
+      color: #fff;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      margin: 0 3px; /* Added space between letters */
+      animation: textGrow 2s ease-in-out forwards;
+    }
+
+    /* Animations */
+    @keyframes zoom {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.5);
+      }
+    }
+
+    @keyframes break-top-left {
+      0% {
+        transform: scale(1) translate(0, 0);
+      }
+      100% {
+        transform: scale(1) translate(-150%, -150%);
+      }
+    }
+
+    @keyframes break-top-right {
+      0% {
+        transform: scale(1) translate(0, 0);
+      }
+      100% {
+        transform: scale(1) translate(150%, -150%);
+      }
+    }
+
+    @keyframes break-bottom-left {
+      0% {
+        transform: scale(1) translate(0, 0);
+      }
+      100% {
+        transform: scale(1) translate(-150%, 150%);
+      }
+    }
+
+    @keyframes break-bottom-right {
+      0% {
+        transform: scale(1) translate(0, 0);
+      }
+      100% {
+        transform: scale(1) translate(150%, 150%);
+      }
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* Text fade-in and grow animation */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes textGrow {
+      0% {
+        transform: scale(0) rotate(0deg);
+      }
+      100% {
+        transform: scale(1.5) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="piece top-left"></div>
+    <div class="piece top-right"></div>
+    <div class="piece bottom-left"></div>
+    <div class="piece bottom-right"></div>
+  </div>
+
+  <!-- First Text Animation -->
+  <div class="text-container">
+    <span>T</span>
+    <span>h</span>
+    <span>i</span>
+    <span>s</span>
+    <span> </span>
+    <span>i</span>
+    <span>s</span>
+    <span> </span>
+    <span>f</span>
+    <span>o</span>
+    <span>r</span>
+    <span> </span>
+    <span>y</span>
+    <span>o</span>
+    <span>u</span>
+    <span> </span>
+    <span>M</span>
+    <span>i</span>
+    <span>s</span>
+    <span>s</span>
+    <span> </span>
+    <span>V</span>
+    <span>a</span>
+    <span>i</span>
+    <span>d</span>
+    <span>e</span>
+    <span>h</span>
+    <span>i</span>
+  </div>
+
+  <!-- Second Text Animation -->
+  <div class="second-text-container">
+    <span>Y</span>
+    <span>o</span>
+    <span>u</span>
+    <span> </span>
+    <span>d</span>
+    <span>e</span>
+    <span>s</span>
+    <span>e</span>
+    <span>r</span>
+    <span>v</span>
+    <span>e</span>
+    <span> </span>
+    <span>m</span>
+    <span>o</span>
+    <span>r</span>
+    <span>e</span>
+    <span> </span>
+    <span>t</span>
+    <span>h</span>
+    <span>a</span>
+    <span>n</span>
+    <span> </span>
+    <span>t</span>
+    <span>h</span>
+    <span>i</span>
+    <span>s</span>
+    <span> </span>
+    <span>b</span>
+    <span>u</span>
+    <span>t</span>
+    <span> </span>
+    <span>h</span>
+    <span>e</span>
+    <span>r</span>
+    <span>e</span>
+    <span> </span>
+    <span>i</span>
+    <span>s</span>
+    <span> </span>
+    <span>s</span>
+    <span>o</span>
+    <span>m</span>
+    <span>e</span>
+    <span>t</span>
+    <span>h</span>
+    <span>i</span>
+    <span>n</span>
+    <span>g</span>
+    <span> </span>
+    <span>l</span>
+    <span>i</span>
+    <span>t</span>
+    <span>t</span>
+    <span>l</span>
+    <span>e</span>
+    <span> </span>
+    <span>f</span>
+    <span>o</span>
+    <span>r</span>
+    <span> </span>
+    <span>y</span>
+    <span>o</span>
+    <span>u</span>
+    <span> </span>
+    <span>f</span>
+    <span>r</span>
+    <span>o</span>
+    <span>m</span>
+    <span> </span>
+    <span>m</span>
+    <span>y</span>
+    <span> </span>
+    <span>s</span>
+    <span>i</span>
+    <span>d</span>
+    <span>e</span>
+  </div>
+</body>
+</html>
